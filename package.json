@@ -1,0 +1,30 @@
+{
+  "name": "project-manager-backend",
+  "version": "1.0.0",
+  "description": "Software to manage projects and tasks",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.ts"
+  },
+  "keywords": [
+    "backend",
+    "project",
+    "task",
+    "manager"
+  ],
+  "author": "Raphael Menezes de Jesus",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.6.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "http-status-codes": "^2.3.0",
+    "prisma": "^5.6.0"
+  }
+}
