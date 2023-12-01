@@ -8,12 +8,14 @@ datasource db {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  email    String    @unique
-  name     String
-  password String
-  projects Project[] @relation("projectMembers")
-  Project  Project[]
+  id             Int       @id @default(autoincrement())
+  email          String    @unique
+  name           String
+  password       String
+  projectsMember Project[] @relation("projectMembers")
+  projectsOwner  Project[]
+  createdTasks   Task[]    @relation("taskAssignedToUser")
+  assignedTasks  Task[]
 
   @@map("user")
 }
@@ -27,7 +29,7 @@ model Project {
 
   owner   User   @relation(fields: [ownerId], references: [id])
   members User[] @relation("projectMembers")
-  Task    Task[]
+  tasks   Task[]
 
   @@map("project")
 }
@@ -46,9 +48,13 @@ model Task {
   status      TaskStatus
   projectId   Int
   tagId       Int?
+  createdBy   Int
+  userId      Int?
 
   project Project @relation(fields: [projectId], references: [id])
   tag     Tag?    @relation(fields: [tagId], references: [id])
+  user    User?   @relation("taskAssignedToUser", fields: [userId], references: [id])
+  creator User    @relation(fields: [createdBy], references: [id])
 
   @@map("task")
 }
